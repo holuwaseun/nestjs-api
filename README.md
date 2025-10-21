@@ -22,7 +22,13 @@ A RESTful API built with NestJS for managing items with CRUD operations.
    pnpm install
    ```
 
-2. **Start the application**:
+2. **Setup environment variables**:
+   ```bash
+   # Copy environment variables from example
+   cp .env.example .env
+   ```
+
+3. **Start the application**:
    ```bash
    # Development mode
    pnpm run start
