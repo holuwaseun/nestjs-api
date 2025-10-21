@@ -45,9 +45,7 @@ async function bootstrap() {
   );
 
   // Also serve the OpenAPI JSON spec
-  app.use('/api-json', (req: any, res: any) => {
-    res.json(document);
-  });
+  app.use('/api-json', (req: any, res: any) => res.json(document));
 
   await app.listen(SERVER.PORT);
 

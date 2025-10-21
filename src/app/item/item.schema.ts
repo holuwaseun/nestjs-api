@@ -1,4 +1,6 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { CATEGORY_ENUM } from 'src/shared/utils/enums';
+import { PaginationMetaDto } from 'src/shared/utils/validator';
 import { z } from 'zod';
 
 export const CreateItemBodySchema = z.object({
@@ -47,3 +49,188 @@ export const ItemSchema = z.object({
   size: z.string(),
   userId: z.uuid(),
 });
+
+class ItemResponseDto {
+  @ApiProperty({
+    description: 'Unique identifier of the item',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
+  id: string;
+
+  @ApiProperty({
+    description: 'Brand of the item',
+    example: 'Nike',
+  })
+  brand: string;
+
+  @ApiProperty({
+    description: 'Category of the item',
+    enum: CATEGORY_ENUM,
+  })
+  category: string;
+
+  @ApiProperty({
+    description: 'Color of the item',
+    example: 'Blue',
+  })
+  color: string;
+
+  @ApiProperty({
+    description: 'URL of the item image',
+    example: 'https://example.com/image.jpg',
+    required: false,
+  })
+  imageUrl?: string;
+
+  @ApiProperty({
+    description: 'Name of the item',
+    example: 'Air Max 90',
+  })
+  name: string;
+
+  @ApiProperty({
+    description: 'Date when the item was purchased',
+    example: '2024-01-15T00:00:00.000Z',
+    type: Date,
+  })
+  purchaseDate: Date;
+
+  @ApiProperty({
+    description: 'Price of the item',
+    example: 129.99,
+  })
+  purchasePrice: number;
+
+  @ApiProperty({
+    description: 'Size of the item',
+    example: 'M',
+  })
+  size: string;
+
+  @ApiProperty({
+    description: 'User ID who owns this item',
+    example: 'e36a823b-9f05-4c44-8eec-454c36737ee2',
+  })
+  userId: string;
+}
+
+export class ItemsListResponseDto {
+  @ApiProperty({
+    description: 'Array of items',
+    type: [ItemResponseDto],
+  })
+  data: ItemResponseDto[];
+
+  @ApiProperty({
+    description: 'Pagination metadata',
+    type: PaginationMetaDto,
+  })
+  meta: PaginationMetaDto;
+}
+
+export class SingleItemResponseDto {
+  @ApiProperty({
+    description: 'Item data',
+    type: ItemResponseDto,
+  })
+  data: ItemResponseDto;
+}
+
+export class CreateItemBodyDto {
+  @ApiProperty({
+    description: 'Brand of the item',
+    example: 'Nike',
+  })
+  brand: string;
+
+  @ApiProperty({
+    description: 'Category of the item',
+    enum: CATEGORY_ENUM,
+    example: CATEGORY_ENUM[0],
+  })
+  category: string;
+
+  @ApiProperty({
+    description: 'Color of the item',
+    example: 'Blue',
+  })
+  color: string;
+
+  @ApiPropertyOptional({
+    description: 'URL of the item image',
+    example: 'https://example.com/image.jpg',
+  })
+  imageUrl?: string;
+
+  @ApiProperty({
+    description: 'Name of the item',
+    example: 'Air Max 90',
+  })
+  name: string;
+
+  @ApiProperty({
+    description: 'Date when the item was purchased',
+    example: '2024-01-15',
+    type: Date,
+  })
+  purchaseDate: Date;
+
+  @ApiProperty({
+    description: 'Price of the item',
+    example: 129.99,
+    type: Number,
+  })
+  purchasePrice: number;
+
+  @ApiProperty({
+    description: 'Size of the item',
+    example: 'M',
+  })
+  size: string;
+}
+
+export class UpdateItemBodyDto {
+  @ApiPropertyOptional({
+    description: 'Brand of the item',
+    example: 'Nike',
+  })
+  brand?: string;
+
+  @ApiPropertyOptional({
+    description: 'Category of the item',
+    enum: CATEGORY_ENUM,
+    example: CATEGORY_ENUM[0],
+  })
+  category?: string;
+
+  @ApiPropertyOptional({
+    description: 'Color of the item',
+    example: 'Blue',
+  })
+  color?: string;
+
+  @ApiPropertyOptional({
+    description: 'URL of the item image',
+    example: 'https://example.com/image.jpg',
+  })
+  imageUrl?: string;
+
+  @ApiPropertyOptional({
+    description: 'Name of the item',
+    example: 'Air Max 90',
+  })
+  name?: string;
+
+  @ApiPropertyOptional({
+    description: 'Price of the item',
+    example: 129.99,
+    type: Number,
+  })
+  purchasePrice?: number;
+
+  @ApiPropertyOptional({
+    description: 'Size of the item',
+    example: 'M',
+  })
+  size?: string;
+}

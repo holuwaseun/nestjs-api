@@ -35,7 +35,7 @@ export function zodToOpenAPI(schema: z.ZodTypeAny): any {
     for (const key in shape) {
       const fieldSchema = shape[key];
       properties[key] = zodToOpenAPI(fieldSchema);
-      
+
       if (!(fieldSchema instanceof z.ZodOptional)) {
         required.push(key);
       }
@@ -62,7 +62,7 @@ export function zodToApiProperty(
   options?: Partial<ApiPropertyOptions>,
 ): ApiPropertyOptions {
   const openApiSchema = zodToOpenAPI(schema);
-  
+
   return {
     ...openApiSchema,
     ...options,

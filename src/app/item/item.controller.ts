@@ -10,16 +10,26 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { z } from 'zod';
 
 import { MetaSchema, ZodValidationPipe } from '../../shared/utils/validator';
-import { ItemsListResponseDto, SingleItemResponseDto } from './dto';
 import {
+  CreateItemBodyDto,
   CreateItemBodySchema,
   GetItemParamsSchema,
   ItemSchema,
+  ItemsListResponseDto,
   ListItemsQuerySchema,
+  SingleItemResponseDto,
+  UpdateItemBodyDto,
   UpdateItemBodySchema,
 } from './item.schema';
 import { ItemService } from './item.service';
@@ -31,6 +41,18 @@ export class ItemController {
 
   @Get()
   @ApiOperation({ summary: 'List all items with pagination' })
+  @ApiQuery({
+    description: 'Page number (1-based)',
+    example: 1,
+    name: 'page',
+    type: Number,
+  })
+  @ApiQuery({
+    description: 'Number of items per page',
+    example: 10,
+    name: 'count',
+    type: Number,
+  })
   @ApiResponse({
     description: 'List of items retrieved successfully',
     status: 200,
@@ -76,6 +98,10 @@ export class ItemController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new item' })
+  @ApiBody({
+    description: 'Item data to create',
+    type: CreateItemBodyDto,
+  })
   @ApiResponse({
     description: 'Item created successfully',
     status: 201,
@@ -101,6 +127,10 @@ export class ItemController {
     description: 'Item unique identifier',
     example: '550e8400-e29b-41d4-a716-446655440000',
     name: 'id',
+  })
+  @ApiBody({
+    description: 'Item data to update',
+    type: UpdateItemBodyDto,
   })
   @ApiResponse({
     description: 'Item updated successfully',
