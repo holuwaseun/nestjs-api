@@ -1,0 +1,146 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [":BUN:", ":NODE:"],
+              ":BLANK_LINE:",
+              ":PACKAGE_WITH_PROTOCOL:",
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              ["@/src/**"],
+              ":BLANK_LINE:",
+              ["@/app/**"],
+              ":BLANK_LINE:",
+              [
+                "@/dtos/**",
+                "@/entities/**",
+                "@/database/migrations/**",
+                "@/repositories/**",
+                "@/database/utils/**"
+              ],
+              ":BLANK_LINE:",
+              ["@/gateways/**"],
+              ":BLANK_LINE:",
+              ["@/llm/**"],
+              ":BLANK_LINE:",
+              [
+                "@/configs/**",
+                "@/infra/**",
+                "@/libs/**",
+                "@/middlewares/**",
+                "@/utils/**"
+              ],
+              ":BLANK_LINE:",
+              [
+                "@/transports/**",
+                "@/http/**",
+                "@/redis/**",
+                "@/transports/middlewares/**",
+                "@/responses/**",
+                "@/requests/**",
+                "@/transports/utils/**"
+              ],
+              ":BLANK_LINE:",
+              ["@/typings/**"]
+            ]
+          }
+        },
+        "useSortedKeys": "on"
+      }
+    },
+    "enabled": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/logs",
+      "!seeds/data",
+      "!**/.mastra",
+      "!**/dist"
+    ]
+  },
+  "formatter": {
+    "attributePosition": "auto",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "enabled": true,
+    "expand": "auto",
+    "formatWithErrors": false,
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/logs",
+      "!seeds/data",
+      "!**/.mastra",
+      "!**/dist"
+    ],
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "useEditorconfig": true
+  },
+  "html": {
+    "formatter": {
+      "selfCloseVoidElements": "always"
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "attributePosition": "auto",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    },
+    "globals": ["exports"]
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "includes": ["**", "!dist", "!node_modules", "!.mastra"],
+    "rules": {
+      "complexity": { "noArguments": "error" },
+      "correctness": {
+        "noInvalidConstructorSuper": "error",
+        "noUnreachableSuper": "error",
+        "noUnusedVariables": "error"
+      },
+      "recommended": false,
+      "style": {
+        "useArrayLiterals": "error",
+        "useBlockStatements": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useConst": "error",
+        "useSingleVarDeclarator": "error"
+      },
+      "suspicious": {
+        "noIrregularWhitespace": "error",
+        "noVar": "error",
+        "noWith": "error",
+        "useGuardForIn": "error"
+      }
+    }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "defaultBranch": "main",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}
